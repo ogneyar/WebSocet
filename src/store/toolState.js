@@ -1,15 +1,16 @@
 import { makeAutoObservable } from "mobx";
+import settingState from './settingState'
 
 class ToolState {
     tool = null
-    defaultWidth = 5
     constructor() {
         makeAutoObservable(this)
     }
 
     setTool(tool) {
         this.tool = tool        
-        this.tool.lineWidth = document.getElementById("line-width").value
+        this.tool.lineWidth = settingState.lineWidth
+        this.tool.strokeColor = settingState.strokeColor
     }
 
     setFillColor(color) {

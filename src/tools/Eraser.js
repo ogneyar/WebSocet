@@ -40,8 +40,10 @@ export default class Eraser extends Tool {
             this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
             this.ctx.beginPath()
             this.ctx.rect(x, y, this.ctx.lineWidth, this.ctx.lineWidth)
+            const fill = this.ctx.fillStyle
             this.ctx.fillStyle = "#fff"
             this.ctx.fill()
+            this.ctx.fillStyle = fill
         }
     }
 

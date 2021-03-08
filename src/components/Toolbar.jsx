@@ -12,7 +12,7 @@ import Line from '../tools/Line'
 const Toolbar = () => {
 
     const changeColor = e => {
-        toolState.setStrokeColor(e.target.value)
+        // toolState.setStrokeColor(e.target.value)
         toolState.setFillColor(e.target.value)
     }
 
@@ -29,8 +29,8 @@ const Toolbar = () => {
                 type="color" 
                 style={{marginLeft: "10px"}}/>
 
-            <button className="toolbar__btn undo" />
-            <button className="toolbar__btn redo" />
+            <button className="toolbar__btn undo" onClick={() => canvasState.undo()}/>
+            <button className="toolbar__btn redo" onClick={() => canvasState.redo()}/>
             <button className="toolbar__btn save" />
         </div>
     )
