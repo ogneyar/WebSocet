@@ -1,6 +1,8 @@
 import Tool from './Tool'
 
-export default class Circle extends Tool {
+export default class Eraser extends Tool {
+    radius = 10
+
     constructor(canvas) {
         super(canvas)
         this.listen()
@@ -19,36 +21,28 @@ export default class Circle extends Tool {
     mouseDownHandler(e) {
         this.mouseDown = true
         this.ctx.beginPath()
-        this.startX = e.pageX - e.target.offsetLeft
-        this.startY = e.pageY - e.target.offsetTop
         this.saved = this.canvas.toDataURL()
+        this.draw(e.pageX - e.target.offsetLeft, e.pageY - e.target.offsetTop)        
     }
 
     mouseMoveHandler(e) {
         if (this.mouseDown) {
-            let currentX = e.pageX - e.target.offsetLeft
-            let currentY = e.pageY - e.target.offsetTop
-            
-            let centerX = (currentX - this.startX) / 2
-            let centerY = (currentY - this.startY) / 2
-
-            let radius = Math.sqrt(Math.pow(centerX, 2) + Math.pow(centerY, 2))
-
-            this.draw(this.startX + centerX, this.startY + centerY, radius)
+            this.saved = this.canvas.toDataURL()
+            this.draw(e.pageX - e.target.offsetLeft, e.pageY - e.target.offsetTop)
         }
     }
 
-    draw(x, y, r) {
+    draw(x, y) {
         const img = new Image()
         img.src = this.saved
         img.onload = () => {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
             this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
-            this.ctx.beginPath()
-            // рисование круга. (x, y) центр круга, r - радиус, 0 - стартовый угол, Math.PI*2 - 360 градусов,
-            this.ctx.arc(x, y, r, 0, Math.PI*2)            
+            this.ctx.beginPath()            
+            // this.ctx.arc(x, y, this.radius, 0, Math.PI*2, true)
+            this.ctx.rect(x, y, 15, 15)
+            this.ctx.fillStyle = "#fff"
             this.ctx.fill()
-            this.ctx.stroke()
         }
     }
 
