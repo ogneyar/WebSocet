@@ -38,9 +38,8 @@ export default class Eraser extends Tool {
         img.onload = () => {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
             this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
-            this.ctx.beginPath()            
-            // this.ctx.arc(x, y, this.radius, 0, Math.PI*2, true)
-            this.ctx.rect(x, y, 15, 15)
+            this.ctx.beginPath()
+            this.ctx.rect(x, y, this.ctx.lineWidth, this.ctx.lineWidth)
             this.ctx.fillStyle = "#fff"
             this.ctx.fill()
         }
