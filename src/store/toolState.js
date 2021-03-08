@@ -7,7 +7,7 @@ class ToolState {
     }
 
     setTool(tool) {
-        this.tool = tool
+        this.tool = tool        
     }
 }
 
