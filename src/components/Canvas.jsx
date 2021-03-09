@@ -22,6 +22,9 @@ const Canvas = observer(() => {
         <div className="canvas">
             <canvas 
                 onMouseDown={() => mouseDownHandler()}
+                // onTouchStart={console.log("onTouchStart")}
+                // onTouchEnd={console.log("onTouchEnd")}
+                // onTouchMove={console.log("onTouchMove")}
                 ref={canvasRef} 
                 width={600} 
                 height={400} />

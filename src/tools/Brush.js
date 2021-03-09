@@ -9,7 +9,11 @@ export default class Brush extends Tool {
     listen() {
         this.canvas.onmouseup = this.mouseUpHandler.bind(this)
         this.canvas.onmousedown = this.mouseDownHandler.bind(this)
-        this.canvas.onmousemove = this.mouseMoveHandler.bind(this)        
+        this.canvas.onmousemove = this.mouseMoveHandler.bind(this)
+        // console.log(this)
+        // this.canvas.ontouchend = this.mouseUpHandler.bind(this)
+        // this.canvas.ontouchstart = this.mouseDownHandler.bind(this)
+        // this.canvas.ontouchmove = this.mouseMoveHandler.bind(this)
     }
 
     mouseUpHandler(e) {
