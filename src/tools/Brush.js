@@ -5,28 +5,32 @@ export default class Brush extends Tool {
         super(canvas)
         this.listen()
     }
-
+    
     listen() {
-        this.canvas.onmouseup = this.mouseUpHandler.bind(this)
-        this.canvas.onmousedown = this.mouseDownHandler.bind(this)
-        this.canvas.onmousemove = this.mouseMoveHandler.bind(this)
-        // console.log(this)
-        // this.canvas.ontouchend = this.mouseUpHandler.bind(this)
-        // this.canvas.ontouchstart = this.mouseDownHandler.bind(this)
-        // this.canvas.ontouchmove = this.mouseMoveHandler.bind(this)
+        // прослушивание событий мыши
+        this.canvas.onmousedown = this.mouseDownHandler
+        this.canvas.onmouseup = this.mouseUpHandler
+        this.canvas.onmousemove = this.mouseMoveHandler
+        // прослушивание событий тачскрина
+        this.canvas.addEventListener("touchstart", this.mouseDownHandler)
+        this.canvas.addEventListener("touchend", this.mouseUpHandler)
+        this.canvas.addEventListener("touchmove", this.mouseMoveHandler)
     }
 
-    mouseUpHandler(e) {
-        this.mouseDown = false
-    }
-
-    mouseDownHandler(e) {
+    mouseDownHandler = e => {
+        console.log("onMouseDown or  touchStart")
         this.mouseDown = true
         this.ctx.beginPath()
         this.ctx.moveTo(e.pageX - e.target.offsetLeft, e.pageY - e.target.offsetTop)
     }
 
-    mouseMoveHandler(e) {
+    mouseUpHandler = () => {
+        console.log("onMouseUp or touchEnd")
+        this.mouseDown = false
+    }
+
+    mouseMoveHandler = e => {
+        console.log("onMouseMove or touchMove")
         if (this.mouseDown) {
             this.draw(e.pageX - e.target.offsetLeft, e.pageY - e.target.offsetTop)
         }
