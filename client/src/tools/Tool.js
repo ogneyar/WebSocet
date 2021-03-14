@@ -1,6 +1,8 @@
 export default class Tool {
-    constructor(canvas) {
+    constructor(canvas, socket, id) {
         this.canvas = canvas
+        this.socket = socket
+        this.id = id
         this.ctx = canvas.getContext('2d')
         this.destroyEvents()
     }
@@ -21,5 +23,8 @@ export default class Tool {
         this.canvas.onmouseup = null
         this.canvas.onmousedown = null
         this.canvas.onmousemove = null
+        // this.canvas.removeEventListener("touchstart", null)
+        // this.canvas.removeEventListener("touchend", null)
+        // this.canvas.removeEventListener("touchmove", null)
     }
 }
